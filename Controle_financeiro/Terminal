@@ -1,0 +1,52 @@
+package org.example;
+
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+
+        Scanner keyboard = new Scanner(System.in);
+
+        boolean is_running = true;
+
+        float salario;
+        int qtd_conta = 0;
+        int loop;
+        float[] valor_conta;
+        float total_conta = 0;
+
+        while (is_running) {
+
+            System.out.println("Insira seu salario nesse mês");
+            salario = keyboard.nextFloat();
+
+            System.out.println("Insira quantas contas serão debitadas nesse mês");
+            qtd_conta = keyboard.nextInt();
+
+            valor_conta = new float[qtd_conta];
+
+            for (int i = 0; i < qtd_conta; i++){
+                System.out.printf("Entre com o valor da conta %d\n", i+1);
+                valor_conta[i] = keyboard.nextFloat();
+                salario = salario - valor_conta[i];
+            }
+
+            System.out.println("Contas do mês");
+
+            for (int j = 0; j < qtd_conta; j++){
+                total_conta = total_conta + valor_conta[j];
+                System.out.printf("R$%.2f\n", valor_conta[j]);
+            }
+
+            System.out.printf("Total de contas do mês: %.2f\n", total_conta);
+            System.out.printf("Sobrará do salario no final desse mês: R$%.2f\n", salario);
+            System.out.println("Deseja refazer a conta com outro valor?\n digite qualquer valor para sim e (-1) para não");
+
+            loop = keyboard.nextInt();
+
+            if(loop == -1) {
+                is_running = false;
+            }
+        }
+    }
+}
